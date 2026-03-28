@@ -11,13 +11,15 @@ import Signup from "../pages/auth/Signup";
 
 // Dashboard
 import UserDashboard from "../pages/dashboard/UserDashboard";
+import Scores from "../pages/dashboard/Scores";
 
 // Admin
 import AdminDashboard from "../pages/admin/AdminDashboard";
-import Scores from "../pages/dashboard/Scores";
+
+// Routes
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
-<Route path="/scores" element={<Scores />} />
+
 function AppRoutes()
 {
   return (
@@ -30,32 +32,35 @@ function AppRoutes()
       {/* Auth */}
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-        <Route
+
+      {/* User */}
+      <Route
         path="/dashboard"
         element={
-            <ProtectedRoute>
+          <ProtectedRoute>
             <UserDashboard />
-            </ProtectedRoute>
+          </ProtectedRoute>
         }
-        />
+      />
 
-        <Route
+      <Route
         path="/scores"
         element={
-            <ProtectedRoute>
+          <ProtectedRoute>
             <Scores />
-            </ProtectedRoute>
+          </ProtectedRoute>
         }
-        />
+      />
 
-        <Route
+      {/* Admin */}
+      <Route
         path="/admin"
         element={
-            <AdminRoute>
+          <AdminRoute>
             <AdminDashboard />
-            </AdminRoute>
+          </AdminRoute>
         }
-        />
+      />
     </Routes>
   );
 }
