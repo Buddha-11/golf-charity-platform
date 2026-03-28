@@ -29,12 +29,32 @@ function AppRoutes()
       {/* Auth */}
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+        <Route
+        path="/dashboard"
+        element={
+            <ProtectedRoute>
+            <UserDashboard />
+            </ProtectedRoute>
+        }
+        />
 
-      {/* User */}
-      <Route path="/dashboard" element={<UserDashboard />} />
-        <Route path="/scores" element={<Scores />} />
-      {/* Admin */}
-      <Route path="/admin" element={<AdminDashboard />} />
+        <Route
+        path="/scores"
+        element={
+            <ProtectedRoute>
+            <Scores />
+            </ProtectedRoute>
+        }
+        />
+
+        <Route
+        path="/admin"
+        element={
+            <AdminRoute>
+            <AdminDashboard />
+            </AdminRoute>
+        }
+        />
     </Routes>
   );
 }

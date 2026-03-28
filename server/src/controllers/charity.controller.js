@@ -74,3 +74,11 @@ export const createCharity = async (req, res) =>
     res.status(500).json({ message: err.message });
   }
 };
+export const deleteCharity = async (req, res) =>
+{
+  const { id } = req.params;
+
+  await supabase.from("charities").delete().eq("id", id);
+
+  res.json({ message: "Deleted" });
+};
