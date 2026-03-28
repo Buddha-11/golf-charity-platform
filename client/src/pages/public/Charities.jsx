@@ -22,45 +22,45 @@ function Charities()
 
   const handleSelect = async () =>
   {
-    try
-    {
-      await selectCharity(
-        { charity_id: selected, percentage },
-        token
-      );
-      alert("Charity updated!");
-    }
-    catch (err)
-    {
-      alert(err.response?.data?.message || "Error");
-    }
+    await selectCharity({ charity_id: selected, percentage }, token);
+    alert("Updated!");
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>Choose a Charity</h1>
+    <div className="p-6">
+      <h1 className="text-3xl mb-6">Charities</h1>
 
-      {charities.map((c) => (
-        <div key={c.id} style={{ marginBottom: "20px" }}>
-          <h3>{c.name}</h3>
-          <p>{c.description}</p>
+      <div className="grid md:grid-cols-3 gap-6">
+        {charities.map((c) => (
+          <div
+            key={c.id}
+            className="bg-gray-900 p-4 rounded-xl border border-gray-800"
+          >
+            <h3 className="text-xl text-blue-400">{c.name}</h3>
+            <p className="text-gray-400 mt-2">{c.description}</p>
 
-          <button onClick={() => setSelected(c.id)}>
-            Select
-          </button>
-        </div>
-      ))}
+            <button
+              onClick={() => setSelected(c.id)}
+              className="mt-4 bg-blue-500 px-4 py-2 rounded"
+            >
+              Select
+            </button>
+          </div>
+        ))}
+      </div>
 
-      <div style={{ marginTop: "20px" }}>
-        <h3>Contribution %</h3>
+      <div className="mt-8">
         <input
           type="number"
           value={percentage}
           onChange={(e) => setPercentage(e.target.value)}
+          className="p-2 rounded bg-gray-800"
         />
-        <br /><br />
-        <button onClick={handleSelect}>
-          Confirm Selection
+        <button
+          onClick={handleSelect}
+          className="ml-4 bg-green-500 px-4 py-2 rounded"
+        >
+          Confirm
         </button>
       </div>
     </div>

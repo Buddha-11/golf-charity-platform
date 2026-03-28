@@ -1,13 +1,21 @@
 import { useState, useContext } from "react";
 import { login } from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate, Navigate } from "react-router-dom";
 
 function Login()
 {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loginUser } = useContext(AuthContext);
+  const { user, loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // ✅ Redirect if already logged in
+  if (user)
+  {
+    return <Navigate to="/dashboard" />;
+  }
 
   const handleSubmit = async () =>
   {
@@ -15,32 +23,40 @@ function Login()
     {
       const res = await login({ email, password });
       loginUser(res.data);
-      alert("Login successful");
+
+      navigate("/dashboard"); // ✅ redirect after login
     }
     catch (err)
     {
-      alert(err.response?.data?.message || "Error");
+      alert("Login failed");
     }
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>Login</h1>
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-gray-900 p-8 rounded-xl w-80">
+        <h2 className="text-2xl mb-4">Login</h2>
 
-      <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      /><br /><br />
+        <input
+          className="w-full p-2 mb-3 bg-gray-800 rounded"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      /><br /><br />
+        <input
+          type="password"
+          className="w-full p-2 mb-3 bg-gray-800 rounded"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button onClick={handleSubmit}>Login</button>
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-blue-500 py-2 rounded"
+        >
+          Login
+        </button>
+      </div>
     </div>
   );
 }
