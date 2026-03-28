@@ -15,7 +15,7 @@ import UserDashboard from "../pages/dashboard/UserDashboard";
 // Admin
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import Scores from "../pages/dashboard/Scores";
-
+import ProtectedRoute from "./ProtectedRoute";
 <Route path="/scores" element={<Scores />} />
 function AppRoutes()
 {
