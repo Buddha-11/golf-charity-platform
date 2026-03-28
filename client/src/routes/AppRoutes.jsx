@@ -14,7 +14,9 @@ import UserDashboard from "../pages/dashboard/UserDashboard";
 
 // Admin
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import Scores from "../pages/dashboard/Scores";
 
+<Route path="/scores" element={<Scores />} />
 function AppRoutes()
 {
   return (
@@ -30,7 +32,7 @@ function AppRoutes()
 
       {/* User */}
       <Route path="/dashboard" element={<UserDashboard />} />
-
+        <Route path="/scores" element={<Scores />} />
       {/* Admin */}
       <Route path="/admin" element={<AdminDashboard />} />
     </Routes>
