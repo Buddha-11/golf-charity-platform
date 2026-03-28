@@ -19,7 +19,9 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 // Routes
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
+import Results from "../pages/dashboard/Results";
 
+import Draw from "../pages/dashboard/Draw";
 function AppRoutes()
 {
   return (
@@ -61,7 +63,25 @@ function AppRoutes()
           </AdminRoute>
         }
       />
+      
+    <Route
+    path="/draw"
+    element={
+        <ProtectedRoute>
+        <Draw />
+        </ProtectedRoute>
+    }
+    />
+    <Route
+    path="/results"
+    element={
+        <ProtectedRoute>
+        <Results />
+        </ProtectedRoute>
+    }
+    />
     </Routes>
+        
   );
 }
 
